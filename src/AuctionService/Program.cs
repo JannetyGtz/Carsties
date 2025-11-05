@@ -24,7 +24,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddMassTransit(x =>
 {
      //Agrega un Entity Framework Outbox a MassTransit para garantizar que los mensajes se envíen solo cuando la transacción de la base de datos se haya confirmado 
-     // correctamente. Esto ayuda a evitar la duplicación de mensajes y garantiza la consistencia en sistemas distribuidos.
+     //correctamente. Esto ayuda a evitar la duplicación de mensajes y garantiza la consistencia en sistemas distribuidos.
      x.AddEntityFrameworkOutbox<AuctionDbContext>(o =>
      {
           o.QueryDelay = TimeSpan.FromSeconds(10);
@@ -41,6 +41,7 @@ builder.Services.AddMassTransit(x =>
           cfg.ConfigureEndpoints(context);
      });
 });
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
